@@ -1,0 +1,42 @@
+﻿@model BagisiklikTakipSistemi.Models.PostYorum
+    @{ 
+        int id = Convert.ToInt32(User.Identity.Name);
+    }
+
+@foreach (var x in Model.Deger1)
+{
+
+    <div class="jumbotron mt-3">
+        <h3 style="color:#0094ff">@x.UyelerTablosu.KulAdi @x.UyelerTablosu.KulSoyadi </h3>
+        <h5 class="lead">
+            @x.PostIcerik
+            <br /><br />
+            <div style="margin-left:850px;margin-bottom:-40px">
+                <a href="/Home/YorumEkle?ID=@x.ID" class="form-control btn btn-primary rounded submit px-3">Yorum Yap</a>
+            </div>
+            <div style="font-size:12pt">@x.Tarih.ToString().Split(' ').First()</div>
+        </h5>
+    </div>
+
+    foreach (var y in Model.Deger2.Where(z => z.PostID == x.ID))
+    {
+
+        <div class="jumbotron mt-3" style="margin-left:75px">
+            <h3 style="color:#0094ff">@y.UyelerTablosu.KulAdi @y.UyelerTablosu.KulSoyadi</h3>
+            <h5 class="lead">
+                @y.YorumIcerik
+            </h5>
+            <div style="font-size:12pt">@y.Tarih.ToString().Split(' ').First()</div>
+            @if (y.UyeID == id) 
+            { 
+              <div style="margin-left:850px;margin-bottom:-40px">
+              <a href="/Home/YorumSil/@y.ID" style="color:#ffffff;" class="btn btn-danger">Yorum Sil</a>
+              </div>
+            }
+            
+        </div>
+
+    }
+
+}
+

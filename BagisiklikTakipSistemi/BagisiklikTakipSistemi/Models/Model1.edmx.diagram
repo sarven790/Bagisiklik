@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3678043204834606b9eff39913c8cd65" Name="Diagram1">
+        <EntityTypeShape EntityType="DbBagisiklikModel.PostTablosu" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbBagisiklikModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbBagisiklikModel.TuketimTablosu" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbBagisiklikModel.UyelerTablosu" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbBagisiklikModel.YorumlarTablosu" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="DbBagisiklikModel.FK_PostTablosu_UyelerTablosu" ManuallyRouted="false" />
+        <AssociationConnector Association="DbBagisiklikModel.FK_YorumlarTablosu_PostTablosu" ManuallyRouted="false" />
+        <AssociationConnector Association="DbBagisiklikModel.FK_TuketimTablosu_UyelerTablosu" ManuallyRouted="false" />
+        <AssociationConnector Association="DbBagisiklikModel.FK_YorumlarTablosu_UyelerTablosu" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

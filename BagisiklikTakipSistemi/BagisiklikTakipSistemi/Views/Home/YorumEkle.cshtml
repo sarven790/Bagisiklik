@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Bağışıklık Takip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body style="background-color:#fbfbf2">
+    @Html.Action("PostBilgileri", "Home")
+    <div class="jumbotron mt-3">
+        <h5 class="lead">
+            <form method="post">
+
+                <div class="form-group">
+                    <textarea style="resize:none; height:5em" name="YorumIcerik" class="form-control rounded-left" placeholder="Yorum Yazın.." required></textarea>
+                </div>
+                <div style="display:none">
+
+                    <input type="text" name="UyeID" value="@User.Identity.Name" />
+                    <input type="text" name="PostID" value="@Request.QueryString["ID"]" />
+                    <input type="text" name="Durum" value="False" />
+                    <input type="text" name="Tarih" value="@DateTime.Now" />
+
+
+                </div>
+                <div style="margin-left:850px">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Yorum Ekle</button>
+                </div>
+
+            </form>
+        </h5>
+
+    </div>
+</body>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Bağışıklık Takip";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Bağışıklık Takip</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-bottom/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body style="background-color:#fbfbf2">
+    <div class="container">
+        <div class="jumbotron mt-3">           
+            <h5 class="lead">
+                <form method="post">
+                    
+                <div class="form-group">
+                    <textarea style="resize:none; height:5em" name="PostIcerik" class="form-control rounded-left" placeholder="Post Paylaşın.." required></textarea>
+                </div>
+                <div style="display:none">
+
+                    <input type="text" name="UyeID" value="@User.Identity.Name" />
+                    <input type="text" name="Durum" value="False" />
+                    <input type="text" name="Tarih" value="@DateTime.Now" />
+
+
+                </div>
+                <div style="margin-left:850px">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Post Ekle</button>
+                </div>
+
+               </form>
+            </h5>
+        </div>
+        @Html.Action("PostListele","Home")
+                
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="~/bootstrap-4.0.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="~/bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+    <script src="~/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

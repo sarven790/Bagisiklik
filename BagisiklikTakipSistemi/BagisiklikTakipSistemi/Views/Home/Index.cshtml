@@ -1,0 +1,49 @@
+﻿@using BagisiklikTakipSistemi.Models;
+@model List<TuketimTablosu>
+
+@{
+    ViewBag.Title = "Bağışıklık Takip";
+}
+
+<body style="background-color:#fbfbf2">
+
+    <div class="text-center">
+
+        <br />
+
+        <table class="table table-hover">
+
+            <tr class="table-primary">
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Su Tüketimi</th>
+                <th style="text-align:center">Toplam Adım</th>
+                <th style="text-align:center">Kayıt Tarih</th>
+                <th style="text-align:center">Güncelle</th>
+                <th style="text-align:center">Sil</th>
+            </tr>
+
+
+            @foreach (var x in Model)
+            {
+                 
+                <tr>
+
+                    <td>@x.ID</td>
+                    <td>@x.SuTuketim</td>
+                    <td>@x.ToplamAdim</td>
+                    <td>@x.Tarih.ToString().Split(' ').First()</td>
+                    <td><a href="/Home/VeriGetir/@x.ID" class="btn btn-success">Güncelle</a></td>
+                    <td><a href="/Home/VeriSil/@x.ID" class="btn btn-danger">Sil</a></td>
+
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+    <a href="~/Home/VeriEkle" class="btn btn-primary">Yeni Veri Ekle</a>
+    <br /><br />
+
+
+</body>

@@ -1,0 +1,33 @@
+﻿@model BagisiklikTakipSistemi.Models.PostYorum
+
+@{
+    ViewBag.Title = "PostBilgileri";
+    Layout = null;
+}
+
+@foreach (var x in Model.Deger1)
+{
+
+    <div class="jumbotron mt-3">
+        <h3 style="color:#0094ff">@x.UyelerTablosu.KulAdi @x.UyelerTablosu.KulSoyadi </h3>
+        <h5 class="lead">
+            @x.PostIcerik
+            <br /><br />        
+            <div style="font-size:12pt">@x.Tarih.ToString().Split(' ').First()</div>
+        </h5>
+    </div>
+
+    foreach (var y in Model.Deger2.Where(z => z.PostID == x.ID))
+    {
+
+        <div class="jumbotron mt-3" style="margin-left:75px">
+            <h3 style="color:#0094ff">@y.UyelerTablosu.KulAdi @y.UyelerTablosu.KulSoyadi</h3>
+            <h5 class="lead">
+                @y.YorumIcerik
+            </h5>
+            <div style="font-size:12pt">@y.Tarih.ToString().Split(' ').First()</div>
+        </div>
+
+    }
+
+}

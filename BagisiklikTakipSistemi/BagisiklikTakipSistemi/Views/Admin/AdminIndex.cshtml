@@ -1,0 +1,61 @@
+﻿@using BagisiklikTakipSistemi.Models;
+@model List<UyelerTablosu>
+@{
+    ViewBag.Title = "Bağışıklık Takip";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<body style="background-color:#fbfbf2">
+
+    <div class="text-center">
+
+        <br />
+
+        <table class="table table-hover">
+
+            <tr class="table-primary">
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Kullanıcı Adı</th>
+                <th style="text-align:center">Kullanıcı Soyadı</th>
+                <th style="text-align:center">Yetki</th>
+                <th style="text-align:center">Durum</th>
+                <th style="text-align:center">Aktif</th>
+                <th style="text-align:center">Pasif</th>
+            </tr>
+
+
+            @foreach (var x in Model)
+            {
+
+                string s = "";
+                string durum = "";
+
+                if (x.Yetki == 1)
+                { s = "Admin"; }
+                else
+                { s = "Kullanıcı"; }
+
+                if (x.Durum == true)
+                { durum = "Aktif"; }
+                else
+                { durum = "Pasif"; }
+
+                <tr>
+
+                    <td>@x.ID</td>
+                    <td>@x.KulAdi</td>
+                    <td>@x.KulSoyadi</td>
+                    <td>@s</td>
+                    <td>@durum</td>
+                    <td><a href="/Admin/UyeAktif/@x.ID" class="btn btn-success">Aktif</a></td>
+                    <td><a href="/Admin/UyePasif/@x.ID" class="btn btn-danger">Pasif</a></td>
+
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+
+</body>

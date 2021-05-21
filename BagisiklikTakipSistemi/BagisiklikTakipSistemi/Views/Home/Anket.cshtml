@@ -1,0 +1,143 @@
+﻿@using BagisiklikTakipSistemi.Controllers;
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Bağışıklık Takip</title>
+
+    <script type="text/javascript">
+        function cevapla() {
+            var soruSayisi = 5;
+            var gelenCevap = new Array();
+            var dogruCevap = new Array("A", "A", "A", "A", "A");
+            var rak = 5;
+            var rapor = "";
+
+            for (i = 1; i <= soruSayisi; i++) {
+                var secenekler = document.getElementsByName("soru" + i);
+                for (j = 0; j < secenekler.length; j++) {
+                    if (secenekler[j].checked) {
+
+                        gelenCevap.push(secenekler[j].value);
+
+                    }
+                }
+            }
+            for (k = 0; k < soruSayisi; k++) {
+                if (gelenCevap[k] == dogruCevap[k]) {
+                    rak = rak;
+                } else {
+                    rak--;
+                }
+            }
+
+            if (rak > 3)
+                rapor += "Sonuç: " + "doğru yoldasınız" + "<br />";
+            else
+                rapor += "Sonuç: " + "yanlış yoldasınız" + "<br />";
+
+            document.getElementById('rapor').innerHTML = rapor;
+        }
+    </script>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-bottom/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+
+<body style="background-color:#fbfbf2">
+    <div class="container">
+        <div class="jumbotron mt-3">
+            <h1 style="color:#0094ff">Sağlık Anketi</h1> <br />
+            <form name="formTest">
+                <p class="lead">
+                    <h4>Soru-1: Sigara kullanıyor musunuz?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru1" value="A" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1"> <h5 style="font-weight:100"> Evet </h5> </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru1" value="B" id="flexRadioDefault2" />
+                        <label class="form-check-label" for="flexRadioDefault2"> <h5 style="font-weight:100"> Hayır </h5> </label>
+                    </div>
+
+                    <h4>Soru-2: Düzenli spor yapar mısınız?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru2" value="A" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1"> <h5 style="font-weight:100"> Evet </h5> </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru2" value="B" id="flexRadioDefault2" />
+                        <label class="form-check-label" for="flexRadioDefault2"> <h5 style="font-weight:100"> Hayır </h5> </label>
+                    </div>
+
+                    <h4>Soru-3: Bir yıl öncesi ile karşılaştırdığınızda genel sağlık durumunuzu nasıl değerlendirirsiniz?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru3" value="A" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1"> <h5 style="font-weight:100"> İyi </h5> </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru3" value="B" id="flexRadioDefault2" />
+                        <label class="form-check-label" for="flexRadioDefault2"> <h5 style="font-weight:100"> Kötü </h5> </label>
+                    </div>
+
+                    <h4>Soru-4: Beslenme düzeniniz nasıldır?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru4" value="A" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1"> <h5 style="font-weight:100"> Evet </h5> </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru4" value="B" id="flexRadioDefault2" />
+                        <label class="form-check-label" for="flexRadioDefault2"> <h5 style="font-weight:100"> Hayır </h5> </label>
+                    </div>
+
+                    <h4>Soru-5: Son bir aydır kilonuzda herhangi bir artış oldu mu?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru5" value="A" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1"> <h5 style="font-weight:100"> Evet </h5> </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="soru5" value="B" id="flexRadioDefault2" />
+                        <label class="form-check-label" for="flexRadioDefault2"> <h5 style="font-weight:100"> Hayır </h5> </label>
+                    </div>
+                    <br />
+                    <input type="button" class="btn btn-lg btn-secondary" value="Sonucu Göster" onclick="cevapla()" />
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-lg btn-primary" href="/Home/NasilHissediyorsun" role="button">Anketi Geç &raquo;</a>
+
+                    <br /><br />
+                    <div id="rapor"></div>
+
+</form>
+            
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="~/bootstrap-4.0.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="~/bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+    <script src="~/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

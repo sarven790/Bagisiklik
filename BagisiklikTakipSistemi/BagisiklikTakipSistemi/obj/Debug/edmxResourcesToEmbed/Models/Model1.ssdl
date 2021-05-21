@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbBagisiklikModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PostTablosu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" />
+    <Property Name="PostBaslik" Type="varchar" MaxLength="50" />
+    <Property Name="PostIcerik" Type="varchar" MaxLength="200" />
+    <Property Name="Tarih" Type="date" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TuketimTablosu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" />
+    <Property Name="SuTuketim" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="ToplamAdim" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Durum" Type="bit" />
+    <Property Name="Tarih" Type="date" />
+  </EntityType>
+  <EntityType Name="UyelerTablosu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KulAdi" Type="varchar" MaxLength="50" />
+    <Property Name="KulSoyadi" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+    <Property Name="Yetki" Type="int" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="varchar" MaxLength="30" />
+    <Property Name="Boy" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Yas" Type="int" />
+    <Property Name="Kilo" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="YorumlarTablosu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostID" Type="int" />
+    <Property Name="UyeID" Type="int" />
+    <Property Name="YorumBaslik" Type="varchar" MaxLength="50" />
+    <Property Name="YorumIcerik" Type="varchar" MaxLength="200" />
+    <Property Name="Tarih" Type="date" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <Association Name="FK_PostTablosu_UyelerTablosu">
+    <End Role="UyelerTablosu" Type="Self.UyelerTablosu" Multiplicity="0..1" />
+    <End Role="PostTablosu" Type="Self.PostTablosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UyelerTablosu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PostTablosu">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TuketimTablosu_UyelerTablosu">
+    <End Role="UyelerTablosu" Type="Self.UyelerTablosu" Multiplicity="0..1" />
+    <End Role="TuketimTablosu" Type="Self.TuketimTablosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UyelerTablosu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TuketimTablosu">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YorumlarTablosu_PostTablosu">
+    <End Role="PostTablosu" Type="Self.PostTablosu" Multiplicity="0..1" />
+    <End Role="YorumlarTablosu" Type="Self.YorumlarTablosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostTablosu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="YorumlarTablosu">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YorumlarTablosu_UyelerTablosu">
+    <End Role="UyelerTablosu" Type="Self.UyelerTablosu" Multiplicity="0..1" />
+    <End Role="YorumlarTablosu" Type="Self.YorumlarTablosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UyelerTablosu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="YorumlarTablosu">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbBagisiklikModelStoreContainer">
+    <EntitySet Name="PostTablosu" EntityType="Self.PostTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TuketimTablosu" EntityType="Self.TuketimTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UyelerTablosu" EntityType="Self.UyelerTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YorumlarTablosu" EntityType="Self.YorumlarTablosu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PostTablosu_UyelerTablosu" Association="Self.FK_PostTablosu_UyelerTablosu">
+      <End Role="UyelerTablosu" EntitySet="UyelerTablosu" />
+      <End Role="PostTablosu" EntitySet="PostTablosu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TuketimTablosu_UyelerTablosu" Association="Self.FK_TuketimTablosu_UyelerTablosu">
+      <End Role="UyelerTablosu" EntitySet="UyelerTablosu" />
+      <End Role="TuketimTablosu" EntitySet="TuketimTablosu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YorumlarTablosu_PostTablosu" Association="Self.FK_YorumlarTablosu_PostTablosu">
+      <End Role="PostTablosu" EntitySet="PostTablosu" />
+      <End Role="YorumlarTablosu" EntitySet="YorumlarTablosu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YorumlarTablosu_UyelerTablosu" Association="Self.FK_YorumlarTablosu_UyelerTablosu">
+      <End Role="UyelerTablosu" EntitySet="UyelerTablosu" />
+      <End Role="YorumlarTablosu" EntitySet="YorumlarTablosu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
